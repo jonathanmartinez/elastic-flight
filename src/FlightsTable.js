@@ -6,7 +6,7 @@ export default class FlightsTable extends Component {
   }
   render() {
     return (
-      <table >
+      <table className="table">
         <thead>
           <tr>
             <th>Date</th><th>Price</th>
@@ -16,8 +16,8 @@ export default class FlightsTable extends Component {
           {this.props.flights.map(function(row, i) {
             return (
               <tr key={i}>
-                <td>{row.DateString}</td>
-                <td>{row.MinPrice}</td>
+                <td>{row.DateStringFormat}</td>
+                <td>{row.MinPriceFormat}</td>
               </tr>
             );
           }, this)}

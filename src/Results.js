@@ -24,7 +24,9 @@ export default class Results extends Component {
               responseJson.Dates[0].forEach(function (value, i) {
                   flightsFormat.push({
                     DateString: value.DateString,
-                    MinPrice: responseJson.Dates[1][i] ? responseJson.Dates[1][i].MinPrice : 0
+                    DateStringFormat: new Date(value.DateString).toDateString(),
+                    MinPrice: responseJson.Dates[1][i] ? responseJson.Dates[1][i].MinPrice : 0,
+                    MinPriceFormat: responseJson.Dates[1][i] ? responseJson.Dates[1][i].MinPrice.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : 0
                   })
               });
               this.setState({
@@ -35,7 +37,7 @@ export default class Results extends Component {
 
   render() {
       if (this.state.flights.length > 0) {
-        const xData =  this.state.flights.map( f => f.DateString );
+        const xData =  this.state.flights.map( f => f.DateStringFormat );
         const yData =  this.state.flights.map( f => f.MinPrice );
 
         return (

@@ -50,7 +50,49 @@ export default class EFForm extends React.Component {
     const destinationPlace = this.state.destinationPlace;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="row">
+        <div className="form-group col-xs-3">
+          <label>Origin</label>
+          <PlaceInput place={originPlace} onPlaceChange={this.handleOriginPlaceChange} className="form-control" />
+        </div>
+        <div className="form-group col-xs-3">
+          <label>Destination</label>
+          <PlaceInput place={destinationPlace} onPlaceChange={this.handleDestinationPlaceChange} className="form-control" />
+        </div>
+        <div className="form-group col-xs-2">
+          <label>Month</label>
+          <select value={this.state.month} onChange={this.handleMonthChange} className="form-control block">
+            <option value='01'>Janaury</option>
+            <option value='02'>February</option>
+            <option value='03'>March</option>
+            <option value='04'>April</option>
+            <option value='05'>May</option>
+            <option value='06'>June</option>
+            <option value='07'>July</option>
+            <option value='08'>August</option>
+            <option value='09'>September</option>
+            <option value='10'>October</option>
+            <option value='11'>November</option>
+            <option value='12'>December</option>
+          </select>
+        </div>
+        <div className="form-group col-xs-2">
+          <label>Year</label>
+          <select value={this.state.year} onChange={this.handleYearChange} className="form-control block">
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+          </select>
+        </div>
+
+        <div className="form-group col-xs-2">
+          <label>&nbsp;</label>
+          <button type="submit" className="btn form-control btn-default">Search</button>
+        </div>
+
+      </form>
+
+      /*<form onSubmit={this.handleSubmit}>
         <label>
           Origin:
           <PlaceInput place={originPlace} onPlaceChange={this.handleOriginPlaceChange} />
@@ -85,7 +127,7 @@ export default class EFForm extends React.Component {
           </select>
         </label>
         <input type="submit" value="Submit" />
-      </form>
+      </form>*/
     );
   }
 }

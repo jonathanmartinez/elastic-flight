@@ -16,9 +16,17 @@ export default class FlightsChart extends Component {
             borderWidth: 1
         }]
     }
+    const options = {
+      scaleLabel: function(label){
+        return parseInt(label.value).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+      },
+      tooltipTemplate: function(tooltip){
+        return tooltip.label + ': ' + parseInt(tooltip.value).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+      }
+    }
 
     return (
-      <LineChart data={data} width="1600" height="400"/>
+      <LineChart data={data} options={options} width="1600" height="400"/>
     );
   }
 }
