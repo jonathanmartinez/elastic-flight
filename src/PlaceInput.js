@@ -34,6 +34,10 @@ export default class PlaceInput extends React.Component {
     return fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/UK/EUR/es-ES/?query=${input}&apiKey=prtl6749387986743898559646983194`)
     .then((response) => response.json())
     .then((json) => {
+      json.Places.forEach(function (place, i) {
+          place.PlaceName += ` — ${place.CountryName}  (${place.PlaceId.replace('-sky', '')})`;
+      });
+
       return { options: json.Places };
     });
   }

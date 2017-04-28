@@ -1,1 +1,1 @@
-Elastic Flight — Find cheap flights with no particular date. 
+Elastic Flight — Find cheap flights with no particular date.

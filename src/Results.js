@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FlightsTable from './FlightsTable.js';
+import FlightsChart from './FlightsChart.js';
+import { Link } from 'react-router-dom';
 import EFForm from './EFForm.js';
 
 export default class Results extends Component {
@@ -22,7 +24,8 @@ export default class Results extends Component {
               responseJson.Dates[0].forEach(function (value, i) {
                   flightsFormat.push({
                     DateString: value.DateString,
-                    MinPrice: responseJson.Dates[1][i] ? responseJson.Dates[1][i].MinPrice : 'Not available'})
+                    MinPrice: responseJson.Dates[1][i] ? responseJson.Dates[1][i].MinPrice : 0
+                  })
               });
               this.setState({
                  'flights' : flightsFormat,
@@ -32,11 +35,16 @@ export default class Results extends Component {
 
   render() {
       if (this.state.flights.length > 0) {
+        const xData =  this.state.flights.map( f => f.DateString );
+        const yData =  this.state.flights.map( f => f.MinPrice );
+
         return (
           <div>
+            <Link to="/">Change filters</Link>
             <p>{this.props.match.params.originPlaceId}</p>
             <p>{this.props.match.params.destinationPlaceId}</p>
             <p>{this.props.match.params.date}</p>
+            <FlightsChart xData={xData} yData={yData}/>
             <FlightsTable flights={this.state.flights} />
           </div>
         );
