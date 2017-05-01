@@ -10,15 +10,8 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/results">Results</Link></li>
-          </ul>
-
-          <hr/>
-
           <Route exact path="/" component={Home}/>
-          <Route path="/results/:originPlaceId/:destinationPlaceId/:date" component={Results}/>
+          <Route path="/results/:originPlaceId/:destinationPlaceId/:date/:passengers" component={Results}/>
         </div>
       </Router>
     );

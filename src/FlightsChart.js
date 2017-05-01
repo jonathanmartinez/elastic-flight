@@ -17,6 +17,7 @@ export default class FlightsChart extends Component {
         }]
     }
     const options = {
+      responsive: true,
       scaleLabel: function(label){
         return parseInt(label.value).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
       },
@@ -26,7 +27,7 @@ export default class FlightsChart extends Component {
     }
 
     return (
-      <LineChart data={data} options={options} width="1600" height="400"/>
+      <LineChart data={data} options={options}/>
     );
   }
 }

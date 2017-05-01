@@ -1,9 +1,46 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Proxima Nova';
 }
 
-.block{
+.full-height{
+  height:100vh;
+  background-image: url("bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.well-ef{
+  background-color: rgba(255,255,255,0.8);
+  color: black;
+}
+
+.lead{
+  font-size: 28px;
+}
+
+.home{
+  color:white;
+}
+
+.btn-ef{
+  border-radius: 20px;
+  font-weight: bold;
+
+  color: white;
+  border: 0px solid white;
+
+
+  background: rgba(146,125,243,1);
+  background: -moz-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(146,125,243,1)), color-stop(100%, rgba(65,207,212,1)));
+  background: -webkit-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: -o-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: -ms-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: linear-gradient(to right, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#927df3', endColorstr='#41cfd4', GradientType=1 );
+
 
 }
