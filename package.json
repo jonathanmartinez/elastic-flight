@@ -10,6 +10,7 @@
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-chartjs": "^0.8.0",
+    "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.5.4",
     "react-input-autosize": "1.1.0",
     "react-month-picker": "^1.2.1",

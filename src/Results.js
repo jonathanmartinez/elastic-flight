@@ -3,6 +3,7 @@ import FlightsTable from './FlightsTable.js';
 import FlightsChart from './FlightsChart.js';
 import { Link } from 'react-router-dom';
 import EFForm from './EFForm.js';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import 'font-awesome/css/font-awesome.css';
 
 export default class Results extends Component {
@@ -12,6 +13,7 @@ export default class Results extends Component {
       flights: [],
       originPlace: {},
       destinationPlace: {},
+      copied: false,
     };
   }
 
@@ -68,7 +70,7 @@ export default class Results extends Component {
         }
 
   render() {
-      if (this.state.flights.length < 0) {
+      if (this.state.flights.length > 0) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
 
@@ -80,7 +82,11 @@ export default class Results extends Component {
                 <Link to="/"><i className="fa fa-angle-left"></i> Change filters</Link>
               </div>
               <div className="col-xs-2 text-right">
-                <button className="btn btn-default"><i className="fa fa-share-alt"></i></button>
+                <CopyToClipboard text={window.location.href}  onCopy={() => this.setState({copied: true})}>
+                    <button className="btn btn-default">
+                        {this.state.copied ? (<span className="text-success"><i className="fa fa-check"></i> URL Copied!</span>) : <i className="fa fa-share-alt"></i>}
+                    </button>
+                </CopyToClipboard>
               </div>
             </div>
 
