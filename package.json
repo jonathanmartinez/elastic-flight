@@ -11,10 +11,12 @@
     "react-bootstrap": "^0.31.0",
     "react-chartjs": "^0.8.0",
     "react-dom": "^15.5.4",
+    "react-input-autosize": "1.1.0",
     "react-month-picker": "^1.2.1",
     "react-picker": "^1.2.9",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-router-transition": "0.0.6",
     "react-select": "^1.0.0-rc.3",
     "react-tap-event-plugin": "^2.0.1",
     "rex-month-picker": "^1.1.3"

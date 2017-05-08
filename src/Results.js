@@ -68,13 +68,12 @@ export default class Results extends Component {
         }
 
   render() {
-      if (this.state.flights.length > 0) {
+      if (this.state.flights.length < 0) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
 
         return (
           <div className="container results">
-
 
             <div className="row results-info">
               <div className="col-xs-10">
@@ -84,7 +83,6 @@ export default class Results extends Component {
                 <button className="btn btn-default"><i className="fa fa-share-alt"></i></button>
               </div>
             </div>
-
 
 
             <section className="row">
@@ -103,21 +101,6 @@ export default class Results extends Component {
                 <div className="chartDiv">
                   <FlightsChart xData={xData} yData={yData}/>
                 </div>
-              </div>
-            </section>
-
-            <section className="row">
-              <div className="col-xs-12 text-center">
-                <p className="lead">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on <br/> {this.state.cheapestFlight.DateStringFormat} for <b>{this.state.cheapestFlight.MinPriceFormat}</b></p>
-                <div className="row">
-                  <div className="col-xs-12 col-md-3 col-md-offset-3">
-                    <button type="button" className="btn btn-block btn-ef">Book now!</button>
-                  </div>
-                  <div className="col-xs-12 col-md-3">
-                    <button type="button" className="btn btn-default btn-block rounded">See more options</button>
-                  </div>
-                </div>
-
               </div>
             </section>
 
@@ -141,7 +124,7 @@ export default class Results extends Component {
       }
       else{
         return (
-            <div className="container">
+            <div className="container container-loading">
               <div className="row">
                 <div className="col-xs-12">
                   <div className="loader">Loading...</div>

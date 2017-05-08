@@ -147,6 +147,10 @@ nav.my-nav{
   }
 }
 
+.container-loading{
+    min-height: 768px;
+}
+
 footer{
   background-color: #444;
   color: white;
@@ -166,10 +170,12 @@ footer{
 
 .link-footer {
     display: inline-block;
+    vertical-align: top;
+    padding-top:13px;
 }
 
 .fix-link-footer {
-    margin-top:-15px;
+    padding-top: 0px;
 }
 .left-10{
   margin-left: 10px;
