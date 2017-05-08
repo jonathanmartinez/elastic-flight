@@ -133,7 +133,7 @@ export default class Results extends Component {
             <div className="container container-loading">
               <div className="row">
                 <div className="col-xs-12">
-                  <div className="loader">Loading...</div>
+                  <div className="loader"></div>
                 </div>
               </div>
 
