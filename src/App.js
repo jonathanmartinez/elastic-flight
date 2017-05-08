@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './Home.js';
+import Navbar from './Navbar.js';
+import Footer from './Footer.js';
 import Results from './Results.js';
 
 export default class App extends Component {
@@ -10,8 +12,12 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Home}/>
-          <Route path="/results/:originPlaceId/:destinationPlaceId/:date/:passengers" component={Results}/>
+          <Navbar />
+          <div>
+            <Route exact path="/" component={Home}/>
+            <Route path="/results/:originPlaceId/:destinationPlaceId/:date/:passengers" component={Results}/>
+          </div>
+          <Footer />
         </div>
       </Router>
     );

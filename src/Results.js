@@ -3,6 +3,7 @@ import FlightsTable from './FlightsTable.js';
 import FlightsChart from './FlightsChart.js';
 import { Link } from 'react-router-dom';
 import EFForm from './EFForm.js';
+import 'font-awesome/css/font-awesome.css';
 
 export default class Results extends Component {
   constructor(props) {
@@ -37,11 +38,11 @@ export default class Results extends Component {
                 }
               }, this);
 
-              var prices = json.Dates[1].map(p => p ? p.MinPrice : 99999 );
+              var prices = flightsFormat.map(f => f.MinPrice);
 
               this.setState({
                  'flights' : flightsFormat,
-                 'cheaperFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
+                 'cheapestFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
               });
             });
     }
@@ -68,32 +69,87 @@ export default class Results extends Component {
 
   render() {
       if (this.state.flights.length > 0) {
-        const xData =  this.state.flights.map( f => f.DateStringFormat );
+        const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
 
         return (
-          <div className="container">
-            <div className="row">
+          <div className="container results">
+
+
+            <div className="row results-info">
+              <div className="col-xs-10">
+                <Link to="/"><i className="fa fa-angle-left"></i> Change filters</Link>
+              </div>
+              <div className="col-xs-2 text-right">
+                <button className="btn btn-default"><i className="fa fa-share-alt"></i></button>
+              </div>
+            </div>
+
+
+
+            <section className="row">
+              <div className="col-xs-12 text-center">
+                <h3 className="">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on {this.state.cheapestFlight.DateStringFormat} for <b>{this.state.cheapestFlight.MinPriceFormat}</b></h3>
+                <br/>
+                <div className="row">
+                  <div className="col-xs-12 col-md-3 col-md-offset-3">
+                    <button type="button" className="btn btn-block btn-ef">Book now!</button>
+                  </div>
+                  <div className="col-xs-12 col-md-3">
+                    <button type="button" className="btn btn-default btn-block rounded">See more options</button>
+                  </div>
+                </div>
+                <br/>
+                <div className="chartDiv">
+                  <FlightsChart xData={xData} yData={yData}/>
+                </div>
+              </div>
+            </section>
+
+            <section className="row">
+              <div className="col-xs-12 text-center">
+                <p className="lead">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on <br/> {this.state.cheapestFlight.DateStringFormat} for <b>{this.state.cheapestFlight.MinPriceFormat}</b></p>
+                <div className="row">
+                  <div className="col-xs-12 col-md-3 col-md-offset-3">
+                    <button type="button" className="btn btn-block btn-ef">Book now!</button>
+                  </div>
+                  <div className="col-xs-12 col-md-3">
+                    <button type="button" className="btn btn-default btn-block rounded">See more options</button>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <section className="row">
               <div className="col-xs-12">
-                <Link to="/">Change filters</Link>
-                <p>The cheaper flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on {this.state.cheaperFlight.DateStringFormat} for {this.state.cheaperFlight.MinPriceFormat}</p>
-                <FlightsChart xData={xData} yData={yData}/>
+                <p className="my-label lead">MONTHLY RESULTS</p>
+                <p>Lorem ipsum dolor average month progress.</p>
                 <FlightsTable
                   flights={this.state.flights}
                   passengers={this.props.match.params.passengers}
                   originPlaceName={`${this.state.originPlace.PlaceName}  — ${this.state.originPlace.CountryName}  (${this.state.originPlace.PlaceId.replace('-sky', '')})`}
                   destinationPlaceName={`${this.state.destinationPlace.PlaceName}  — ${this.state.destinationPlace.CountryName}  (${this.state.destinationPlace.PlaceId.replace('-sky', '')})`}
+                  originPlaceCode={this.state.originPlace.PlaceId.replace('-sky', '')}
+                  destinationPlaceCode={this.state.destinationPlace.PlaceId.replace('-sky', '')}
                 />
               </div>
-            </div>
+            </section>
+
           </div>
         );
       }
       else{
         return (
-          <h1>
-            <p>Cargando...</p>
-          </h1>
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-12">
+                  <div className="loader">Loading...</div>
+                </div>
+              </div>
+
+            </div>
+
         );
       }
   }
