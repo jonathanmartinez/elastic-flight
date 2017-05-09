@@ -14,7 +14,9 @@ export default class Results extends Component {
       originPlace: {},
       destinationPlace: {},
       copied: false,
+      error: false,
     };
+    this.handleErrors = this.handleErrors.bind(this);
   }
 
   componentDidMount(){
@@ -26,7 +28,7 @@ export default class Results extends Component {
 
   fetchFlights(){
         fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/es-ES/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=prtl6749387986743898559646983194`)
-            .then((response) => response.json())
+            /*.then((response) => response.json())
             .then((json) => {
               var flightsFormat = [];
               json.Dates[0].forEach(function (value, i) {
@@ -46,34 +48,84 @@ export default class Results extends Component {
                  'flights' : flightsFormat,
                  'cheapestFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
               });
-            });
+          });*/
+
+          .then(this.handleErrors)
+          .then((response) => response.json())
+          .then((json) => {
+              var flightsFormat = [];
+              json.Dates[0].forEach(function (value, i) {
+                if(json.Dates[1][i]){
+                  flightsFormat.push({
+                    DateString: value.DateString,
+                    DateStringFormat: new Date(value.DateString).toDateString(),
+                    MinPrice: json.Dates[1][i] ? json.Dates[1][i].MinPrice * this.props.match.params.passengers : 0,
+                    MinPriceFormat: json.Dates[1][i] ? (json.Dates[1][i].MinPrice * this.props.match.params.passengers).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : 0
+                  })
+                }
+              }, this);
+
+              var prices = flightsFormat.map(f => f.MinPrice);
+
+              this.setState({
+                 'flights' : flightsFormat,
+                 'cheapestFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
+              });
+          }).catch(function(error) {
+              this.setState({'error' : true});
+          });
+    }
+
+    handleErrors(response) {
+      if (!response.ok) {
+          throw Error(response.statusText);
+      }
+      return response;
     }
 
     //TODO: Refact
     fetchOriginPlace(PlaceId){
           fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/es-ES?id=${PlaceId}%26apikey=prtl6749387986743898559646983194`)
+              .then(this.handleErrors)
               .then((response) => response.json())
               .then((json) => {
                 this.setState({
                    originPlace : json.Places[0],
                 });
+              }).catch(function(error) {
+                  this.setState({'error' : true});
               });
+              /*.then((response) => response.json())
+              .then((json) => {
+                this.setState({
+                   originPlace : json.Places[0],
+                });
+            });*/
       }
     fetchDestinationPlace(PlaceId){
             fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/es-ES?id=${PlaceId}%26apikey=prtl6749387986743898559646983194`)
-                .then((response) => response.json())
+                /*.then((response) => response.json())
                 .then((json) => {
                   this.setState({
                      destinationPlace : json.Places[0],
                   });
-                });
+              });*/
+              .then(this.handleErrors)
+              .then((response) => response.json())
+              .then((json) => {
+                  this.setState({
+                     destinationPlace : json.Places[0],
+                  });
+              }).catch(function(error) {
+                  this.setState({'error' : true});
+              });
         }
 
   render() {
-      if (this.state.flights.length > 0) {
+      if (this.state.flights.length > 0 && !this.state.error) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
-
+        /*
         return (
           <div className="container results">
 
@@ -126,7 +178,7 @@ export default class Results extends Component {
             </section>
 
           </div>
-        );
+      );*/
       }
       else{
         return (
