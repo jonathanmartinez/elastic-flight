@@ -47,7 +47,7 @@ export default class PlaceInput extends React.Component {
     const place = this.props.place;
 
     return(
-      <AsyncComponent value={place} onChange={this.onChange} valueKey="PlaceId" labelKey="PlaceName" loadOptions={this.getPlaces} />
+      <AsyncComponent value={place} onChange={this.onChange} valueKey="PlaceId" labelKey="PlaceName" loadOptions={this.getPlaces} autofocus={this.props.autofocus} />
     )
   }
 }

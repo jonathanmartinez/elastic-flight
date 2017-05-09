@@ -20,6 +20,7 @@ export default class EFForm extends React.Component {
       passengers: 1,
       originPlace: {PlaceId: "", PlaceName: "Country, city or airport..."},
       destinationPlace: {PlaceId: "", PlaceName: "Country, city or airport..."},
+      formValidationStarted: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,8 +60,16 @@ updateYear (newValue) {
 }
 
   handleSubmit(event) {
-    this.context.router.history.push(`/results/${this.state.originPlace.PlaceId}/${this.state.destinationPlace.PlaceId}/${this.state.year.value}-${this.state.month.value}/${this.state.passengers}`)
-    event.preventDefault();
+      event.preventDefault();
+      if(!this.state.originPlace.PlaceId){
+          this.setState({formValidationStarted: true});
+          return false;
+      }
+      if(!this.state.destinationPlace.PlaceId){
+          this.setState({formValidationStarted: true});
+          return false;
+      }
+      this.context.router.history.push(`/results/${this.state.originPlace.PlaceId}/${this.state.destinationPlace.PlaceId}/${this.state.year.value}-${this.state.month.value}/${this.state.passengers}`);
   }
 
   handleYearChange(event) {
@@ -107,11 +116,23 @@ updateYear (newValue) {
       <form onSubmit={this.handleSubmit} className="row">
         <div className="form-group col-xs-12 col-md-3">
           <label>Origin</label>
-          <PlaceInput place={originPlace} onPlaceChange={this.handleOriginPlaceChange} className="form-control" />
+          <PlaceInput place={originPlace} autofocus={true} onPlaceChange={this.handleOriginPlaceChange} className="form-control" />
+          {
+              !this.state.originPlace.PlaceId && this.state.formValidationStarted ?
+              <span className="helpBlock text-danger"><i className="fa fa-times"></i> Origin is required</span>
+              :
+              null
+          }
         </div>
         <div className="form-group col-xs-12 col-md-3">
           <label>Destination</label>
           <PlaceInput place={destinationPlace} onPlaceChange={this.handleDestinationPlaceChange} className="form-control" />
+          {
+              !this.state.destinationPlace.PlaceId && this.state.formValidationStarted ?
+              <span className="helpBlock text-danger"><i className="fa fa-times"></i> Destination is required</span>
+              :
+              null
+          }
         </div>
         <div className="form-group col-xs-12 col-md-2">
           <label>Month</label>
@@ -132,43 +153,6 @@ updateYear (newValue) {
         </div>
 
       </form>
-
-      /*<form onSubmit={this.handleSubmit}>
-        <label>
-          Origin:
-          <PlaceInput place={originPlace} onPlaceChange={this.handleOriginPlaceChange} />
-        </label>
-        <label>
-          Destination:
-          <PlaceInput place={destinationPlace} onPlaceChange={this.handleDestinationPlaceChange} />
-        </label>
-        <label>
-          Month:
-          <select value={this.state.month} onChange={this.handleMonthChange}>
-            <option value='01'>Janaury</option>
-            <option value='02'>February</option>
-            <option value='03'>March</option>
-            <option value='04'>April</option>
-            <option value='05'>May</option>
-            <option value='06'>June</option>
-            <option value='07'>July</option>
-            <option value='08'>August</option>
-            <option value='09'>September</option>
-            <option value='10'>October</option>
-            <option value='11'>November</option>
-            <option value='12'>December</option>
-          </select>
-        </label>
-        <label>
-          Year:
-          <select value={this.state.year} onChange={this.handleYearChange}>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>*/
     );
   }
 }
