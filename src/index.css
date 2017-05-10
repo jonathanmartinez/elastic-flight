@@ -181,3 +181,11 @@ footer{
 .left-10{
   margin-left: 10px;
 }
+
+.error{
+  margin-top: 60px;
+}
+.error i{
+  font-size: 100px;
+  color: #d0d0d0;
+}

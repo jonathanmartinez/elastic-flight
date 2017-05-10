@@ -71,7 +71,7 @@ export default class Results extends Component {
                  'flights' : flightsFormat,
                  'cheapestFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
               });
-          }).catch(function(error) {
+          }).catch((error) => {
               this.setState({'error' : true});
           });
     }
@@ -92,7 +92,7 @@ export default class Results extends Component {
                 this.setState({
                    originPlace : json.Places[0],
                 });
-              }).catch(function(error) {
+              }).catch((error) => {
                   this.setState({'error' : true});
               });
               /*.then((response) => response.json())
@@ -116,16 +116,35 @@ export default class Results extends Component {
                   this.setState({
                      destinationPlace : json.Places[0],
                   });
-              }).catch(function(error) {
+              }).catch((error) => {
                   this.setState({'error' : true});
               });
         }
 
   render() {
-      if (this.state.flights.length > 0 && !this.state.error) {
+    if(this.state.error){
+      return (
+          <div className="container container-loading">
+            <div className="row">
+              <div className="col-xs-12 text-center error">
+                <i className="fa fa-frown-o"></i>
+                <p className="lead">Sorry, we do not find any flight for your filters, choose another filters.</p>
+                <div className="row">
+                  <div className="col-xs-4 col-xs-offset-4">
+                    <Link to="/"><button type="button" className="btn btn-default btn-ef btn-block rounded">Change filters</button></Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+      );
+    }
+    else if (this.state.flights.length > 0) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
-        /*
+
         return (
           <div className="container results">
 
@@ -178,7 +197,7 @@ export default class Results extends Component {
             </section>
 
           </div>
-      );*/
+      );
       }
       else{
         return (
