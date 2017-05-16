@@ -13,10 +13,10 @@ export default class App extends Component {
       <Router>
         <div>
           <Navbar />
-          <div>
+          <main>
             <Route exact path="/" component={Home}/>
             <Route path="/results/:originPlaceId/:destinationPlaceId/:date/:passengers" component={Results}/>
-          </div>
+          </main>
           <Footer />
         </div>
       </Router>

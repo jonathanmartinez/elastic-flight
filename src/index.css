@@ -88,6 +88,7 @@ nav.my-nav{
   height: 60px;
   border-bottom: 1px solid #ededed;
   color: rgba(146,125,243,1);
+  box-shadow: 0 0 5px rgba(57,70,78,.2);
   padding: 0px 30px;
 }
 

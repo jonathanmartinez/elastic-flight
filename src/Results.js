@@ -28,7 +28,6 @@ export default class Results extends Component {
 
   fetchFlights(){
         fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
-          //fetchJsonp(`http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
           .then(this.handleErrors)
           .then((response) => response.json())
           .then((json) => {

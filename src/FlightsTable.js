@@ -7,10 +7,10 @@ export default class FlightsTable extends Component {
   render() {
     const sortedFlights = this.props.flights.sort(function(a,b) {return (a.MinPrice > b.MinPrice) ? 1 : ((b.MinPrice > a.MinPrice) ? -1 : 0);});
     return (
-      <div>
+      <section>
           {sortedFlights.map(function(row, i) {
             return (
-              <div className="row well-ticket" key={i}>
+              <article className="row well-ticket" key={i}>
                 <div className="col-md-8 col-xs-12">
                   <div className="row">
                     <div className="col-xs-5">
@@ -41,10 +41,10 @@ export default class FlightsTable extends Component {
                   <h2><b>{row.MinPriceFormat}</b></h2>
                   <a target="_blank" href="http://skyscanner.com"><button type="button" className="btn form-control btn-ef">Book now!</button></a>
                 </div>
-              </div>
+              </article>
             );
           }, this)}
-      </div>
+      </section>
     );
   }
 }
