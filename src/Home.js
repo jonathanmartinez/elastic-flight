@@ -8,8 +8,7 @@ export default class Home extends Component {
           <div className="container home">
             <div className="row">
               <div className="col-xs-12">
-              <br/><br/><br/><br/><br/><br/>
-                <p className="lead text-center">Find cheap flights with no particular date.</p>
+                <p className="lead text-center intro">Find cheap flights with no particular date.</p>
               <div className="well well-ef">
                 <EFForm/>
               </div>

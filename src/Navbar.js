@@ -7,8 +7,8 @@ export default class Navbar extends Component {
     return (
           <nav className="container-fluid my-nav">
             <div className="row">
-              <div className="col-xs-12">
-                <Link to="/"><img src={logoEF} /></Link>
+              <div className="col-xs-12 divLogo">
+                  <Link to="/"><img height="60" src={logoEF} /></Link>
               </div>
             </div>
           </nav>

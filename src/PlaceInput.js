@@ -31,7 +31,7 @@ export default class PlaceInput extends React.Component {
     if (!input) {
       return Promise.resolve({ options: [] });
     }
-    return fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/UK/EUR/es-ES/?query=${input}&apiKey=prtl6749387986743898559646983194`)
+    return fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/UK/EUR/en-EN/?query=${input}&apiKey=jo976848726052725135841379967755`)
     .then((response) => response.json())
     .then((json) => {
       json.Places.forEach(function (place, i) {

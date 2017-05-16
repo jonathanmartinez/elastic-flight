@@ -31,7 +31,7 @@ export default class FlightsChart extends Component {
       //scaleShowVerticalLines: false,
       //scaleShowHorizontalLines: false,
       backgroundColor: "#F5DEB3",
-      responsive: true,
+      //responsive: true,
       scaleLabel: function(label){
         return parseInt(label.value).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
       },
@@ -70,7 +70,7 @@ export default class FlightsChart extends Component {
 
     return (
       //<LineChart data={data} options={options}/>
-      <canvas className="chart" ref="chart" />
+      <canvas className="chart" ref="chart" width="1024" height="400" />
     );
   }
 }

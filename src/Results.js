@@ -27,29 +27,8 @@ export default class Results extends Component {
   }
 
   fetchFlights(){
-        fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/es-ES/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=prtl6749387986743898559646983194`)
-            /*.then((response) => response.json())
-            .then((json) => {
-              var flightsFormat = [];
-              json.Dates[0].forEach(function (value, i) {
-                if(json.Dates[1][i]){
-                  flightsFormat.push({
-                    DateString: value.DateString,
-                    DateStringFormat: new Date(value.DateString).toDateString(),
-                    MinPrice: json.Dates[1][i] ? json.Dates[1][i].MinPrice * this.props.match.params.passengers : 0,
-                    MinPriceFormat: json.Dates[1][i] ? (json.Dates[1][i].MinPrice * this.props.match.params.passengers).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : 0
-                  })
-                }
-              }, this);
-
-              var prices = flightsFormat.map(f => f.MinPrice);
-
-              this.setState({
-                 'flights' : flightsFormat,
-                 'cheapestFlight' : flightsFormat[prices.indexOf(Math.min(...prices))],//get the cheaper flight based on their price
-              });
-          });*/
-
+        fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
+          //fetchJsonp(`http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
           .then(this.handleErrors)
           .then((response) => response.json())
           .then((json) => {
@@ -85,7 +64,7 @@ export default class Results extends Component {
 
     //TODO: Refact
     fetchOriginPlace(PlaceId){
-          fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/es-ES?id=${PlaceId}%26apikey=prtl6749387986743898559646983194`)
+          fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/en-EN?id=${PlaceId}&apikey=jo976848726052725135841379967755`)
               .then(this.handleErrors)
               .then((response) => response.json())
               .then((json) => {
@@ -95,21 +74,9 @@ export default class Results extends Component {
               }).catch((error) => {
                   this.setState({'error' : true});
               });
-              /*.then((response) => response.json())
-              .then((json) => {
-                this.setState({
-                   originPlace : json.Places[0],
-                });
-            });*/
       }
     fetchDestinationPlace(PlaceId){
-            fetch(`http://localhost:8080/?url=http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/es-ES?id=${PlaceId}%26apikey=prtl6749387986743898559646983194`)
-                /*.then((response) => response.json())
-                .then((json) => {
-                  this.setState({
-                     destinationPlace : json.Places[0],
-                  });
-              });*/
+            fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/en-EN?id=${PlaceId}&apikey=jo976848726052725135841379967755`)
               .then(this.handleErrors)
               .then((response) => response.json())
               .then((json) => {
@@ -141,7 +108,8 @@ export default class Results extends Component {
 
       );
     }
-    else if (this.state.flights.length > 0) {
+    //TODO
+    else if (this.state.flights.length > 0 && this.state.originPlace.PlaceId && this.state.destinationPlace.PlaceId) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
 
@@ -164,27 +132,29 @@ export default class Results extends Component {
 
             <section className="row">
               <div className="col-xs-12 text-center">
-                <h3 className="">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on {this.state.cheapestFlight.DateStringFormat} for <b>{this.state.cheapestFlight.MinPriceFormat}</b></h3>
+                <h3 className="results-intro">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on {this.state.cheapestFlight.DateStringFormat} for <br/><b>{this.state.cheapestFlight.MinPriceFormat}</b></h3>
                 <br/>
                 <div className="row">
                   <div className="col-xs-12 col-md-3 col-md-offset-3">
-                    <button type="button" className="btn btn-block btn-ef">Book now!</button>
+                    <a target="_blank" href="http://skyscanner.com"><button type="button" className="btn btn-block btn-ef book-now-cheapest">Book now!</button></a>
                   </div>
                   <div className="col-xs-12 col-md-3">
-                    <button type="button" className="btn btn-default btn-block rounded">See more options</button>
+                    <a href="#cheapestFlights"><button type="button" className="btn btn-default btn-block rounded">See more options</button></a>
                   </div>
                 </div>
                 <br/>
-                <div className="chartDiv">
+                <div className="chartDiv text-center">
                   <FlightsChart xData={xData} yData={yData}/>
+                  <p className="visible-xs bottom-0">Horizontal scroll to view more.</p>
+                  <p><i className="fa fa-arrows-h scroll-to-view visible-xs"></i></p>
                 </div>
               </div>
             </section>
 
-            <section className="row">
+            <section className="row" id="cheapestFlights">
               <div className="col-xs-12">
-                <p className="my-label lead">MONTHLY RESULTS</p>
-                <p>Lorem ipsum dolor average month progress.</p>
+                <p className="my-label lead">CHEAPEST FLIGHTS</p>
+                <p>List of cheapest flights ordered by price.</p>
                 <FlightsTable
                   flights={this.state.flights}
                   passengers={this.props.match.params.passengers}
@@ -195,6 +165,8 @@ export default class Results extends Component {
                 />
               </div>
             </section>
+
+            <p className="note">* All prices are estimated and can vary a little bit at the final step.</p>
 
           </div>
       );

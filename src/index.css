@@ -10,20 +10,14 @@ body {
   background-color: white;
 }
 
-.results section{
-  padding: 40px 40px;
-  background-color: white;
-  margin-bottom: 60px;
-  border-radius: 4px;
-  border: 1px solid #ededed;
 
-}
 
 .rounded{
   border-radius: 20px;
 }
 
 .full-height{
+  min-height: 768px;
   height:100vh;
   background-image: url("bg.jpg");
   background-position: center center;
@@ -41,7 +35,7 @@ body {
 
 .well-ticket{
   border-bottom: 1px solid #ededed;
-  padding: 40px 20px;
+  padding: 40px 0px;
 }
 
 .my-label{
@@ -63,8 +57,9 @@ body {
 
   color: white;
   border: 0px solid white;
+}
 
-
+.btn-ef, .btn-ef:active{
   background: rgba(146,125,243,1);
   background: -moz-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(146,125,243,1)), color-stop(100%, rgba(65,207,212,1)));
@@ -73,13 +68,19 @@ body {
   background: -ms-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
   background: linear-gradient(to right, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#927df3', endColorstr='#41cfd4', GradientType=1 );
-
-
 }
 
 .chartDiv{
-  height: 400px;
-  max-height: 400px;
+  overflow-x: scroll;
+}
+
+.scroll-to-view{
+  font-size: 24px;
+  color:#41cfd4;
+}
+
+.bottom-0{
+  margin-bottom: 0px;
 }
 
 nav.my-nav{
@@ -188,4 +189,68 @@ footer{
 .error i{
   font-size: 100px;
   color: #d0d0d0;
+}
+
+.arrow{
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+.note{
+  margin-bottom: 40px;
+  margin-top: -20px;
+}
+
+
+.intro{
+  margin-top:40px;
+  margin-bottom: 30px;
+}
+
+.divLogo{
+  text-align: center;
+}
+
+.results{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.book-now-cheapest{
+  margin-bottom:10px;
+}
+
+.results section{
+  padding: 20px 10px;
+  background-color: white;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ededed;
+
+}
+.results-intro{
+  font-size: 18px;
+}
+
+@media only screen and (min-width : 768px) {
+  .intro{
+    margin-top:120px;
+  }
+  .full-height{
+    min-height: 0px;
+  }
+  .divLogo{
+    text-align: left;
+  }
+  .results{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .results section{
+    padding: 40px 40px;
+    margin-bottom: 60px;
+  }
+  .results-intro{
+    font-size: 24px;
+  }
 }

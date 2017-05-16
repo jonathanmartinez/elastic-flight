@@ -9,7 +9,7 @@ export default class Footer extends Component {
             <div className="row">
               <div className="col-xs-12 text-center">
                 <div className="link-footer">Coded with <i className="fa fa-heart text-danger"></i> by Jonathan Martínez </div>
-                <div className="link-footer left-10"> |</div>
+                <div className="link-footer left-10 hidden-xs"> |</div>
                 <div className="link-footer fix-link-footer"><Link to="/"><img className="logoSkyscanner" src={logoSkyscanner} /></Link></div>
               </div>
             </div>
