@@ -96,7 +96,7 @@ export default class Results extends Component {
                 <i className="fa fa-frown-o"></i>
                 <p className="lead">Sorry, we do not find any flight for your filters, choose another filters.</p>
                 <div className="row">
-                  <div className="col-xs-4 col-xs-offset-4">
+                  <div className="col-md-4 col-md-offset-4">
                     <Link to="/"><button type="button" className="btn btn-default btn-ef btn-block rounded">Change filters</button></Link>
                   </div>
                 </div>

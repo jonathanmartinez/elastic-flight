@@ -7,7 +7,7 @@ export default class FlightsTable extends Component {
   render() {
     const sortedFlights = this.props.flights.sort(function(a,b) {return (a.MinPrice > b.MinPrice) ? 1 : ((b.MinPrice > a.MinPrice) ? -1 : 0);});
     return (
-      <section>
+      <div>
           {sortedFlights.map(function(row, i) {
             return (
               <article className="row well-ticket" key={i}>
@@ -44,7 +44,7 @@ export default class FlightsTable extends Component {
               </article>
             );
           }, this)}
-      </section>
+      </div>
     );
   }
 }
