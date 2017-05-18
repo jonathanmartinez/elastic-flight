@@ -2,7 +2,7 @@
     <p><strong>Elastic Flight</strong> — Find cheap flights with no particular date.</p>
     <a href="http://www.elasticflight.com">elasticflight.com</a>
     <br><br>
-    <img src="https://github.com/jonathanmartinez/elastic-flight/blob/master/doc/demo.gif?raw=true">
+    <img src="https://github.com/jonathanmartinez/elastic-flight/blob/master/doc/demo.gif?raw=true" alt="Demo">
 </div>
 
 # Description
