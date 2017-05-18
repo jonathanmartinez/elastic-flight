@@ -5,7 +5,7 @@
 
 # Description
 
-Elastic flight is a flight search tool to find the cheapest flight near to the date you will flight, perfect for those who don't have any date in mind to flight.
+Elastic Flight is a flight search tool to analyze the price of flights within a month, perfect for those who don't have any date in mind to flight.
 
 # Stack
 
