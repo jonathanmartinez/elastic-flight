@@ -1,6 +1,6 @@
 <div align="center">
     <strong>Elastic Flight</strong> — Find cheap flights with no particular date.
-    [elasticflight.com](http://www.elasticflight.com)
+    <a href="http://www.elasticflight.com">elasticflight.com</a>
 </div>
 
 # Stack
