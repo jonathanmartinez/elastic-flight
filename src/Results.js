@@ -28,7 +28,6 @@ export default class Results extends Component {
 
   fetchFlights(){
         fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
-          //fetchJsonp(`http://partners.api.skyscanner.net/apiservices/browsegrid/v1.0/ES/eur/en-EN/${this.props.match.params.originPlaceId}/${this.props.match.params.destinationPlaceId}/${this.props.match.params.date}?apikey=jo976848726052725135841379967755`)
           .then(this.handleErrors)
           .then((response) => response.json())
           .then((json) => {
@@ -97,7 +96,7 @@ export default class Results extends Component {
                 <i className="fa fa-frown-o"></i>
                 <p className="lead">Sorry, we do not find any flight for your filters, choose another filters.</p>
                 <div className="row">
-                  <div className="col-xs-4 col-xs-offset-4">
+                  <div className="col-md-4 col-md-offset-4">
                     <Link to="/"><button type="button" className="btn btn-default btn-ef btn-block rounded">Change filters</button></Link>
                   </div>
                 </div>

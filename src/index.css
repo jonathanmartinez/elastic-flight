@@ -70,6 +70,10 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#927df3', endColorstr='#41cfd4', GradientType=1 );
 }
 
+footer a{
+    color: white;
+}
+
 .chartDiv{
   overflow-x: scroll;
 }
@@ -88,6 +92,7 @@ nav.my-nav{
   height: 60px;
   border-bottom: 1px solid #ededed;
   color: rgba(146,125,243,1);
+  box-shadow: 0 0 5px rgba(57,70,78,.2);
   padding: 0px 30px;
 }
 
@@ -196,10 +201,7 @@ footer{
   margin-top: 40px;
 }
 
-.note{
-  margin-bottom: 40px;
-  margin-top: -20px;
-}
+
 
 
 .intro{
@@ -232,7 +234,15 @@ footer{
   font-size: 18px;
 }
 
+.note{
+  margin-bottom: 20px;
+}
+
 @media only screen and (min-width : 768px) {
+    .note{
+      margin-bottom: 40px;
+      margin-top: -20px;
+    }
   .intro{
     margin-top:120px;
   }
