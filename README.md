@@ -3,6 +3,10 @@
     <a href="http://www.elasticflight.com">elasticflight.com</a>
 </div>
 
+# Description
+
+    Elastic flight is a flight search tool to find the cheapest flight near to the date you will flight, perfect for those who don't have any date in mind to flight.
+
 # Stack
 
 * [ReactJS](https://facebook.github.io/react/) & [React Router](https://reacttraining.com/react-router/)
