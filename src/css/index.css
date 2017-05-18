@@ -10,8 +10,6 @@ body {
   background-color: white;
 }
 
-
-
 .rounded{
   border-radius: 20px;
 }
@@ -19,13 +17,12 @@ body {
 .full-height{
   min-height: 768px;
   height:100vh;
-  background-image: url("bg.jpg");
+  background-image: url("../images/bg.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: -60px;
   width: 100%;
-
 }
 
 .well-ef{
@@ -110,13 +107,12 @@ nav.my-nav{
   padding-right: 0px;
 }
 
-
-.loader,
-.loader:after {
+.loader, .loader:after {
   border-radius: 50%;
   width: 10em;
   height: 10em;
 }
+
 .loader {
   margin: 60px auto;
   font-size: 10px;
@@ -201,9 +197,6 @@ footer{
   margin-top: 40px;
 }
 
-
-
-
 .intro{
   margin-top:40px;
   margin-bottom: 30px;
@@ -239,10 +232,10 @@ footer{
 }
 
 @media only screen and (min-width : 768px) {
-    .note{
+  .note{
       margin-bottom: 40px;
       margin-top: -20px;
-    }
+  }
   .intro{
     margin-top:120px;
   }

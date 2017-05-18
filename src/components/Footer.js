@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logoSkyscanner from './PoweredbySkyscanner_Inline_White.png';
+import logoSkyscanner from '../images/PoweredbySkyscanner_Inline_White.png';
 
 export default class Footer extends Component {
   render() {
