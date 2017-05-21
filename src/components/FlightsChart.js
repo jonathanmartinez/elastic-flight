@@ -3,10 +3,6 @@ import Chart from 'chart.js';
 
 
 export default class FlightsChart extends Component {
-  constructor(props) {
-    super(props);
-
-  }
   componentDidMount() {
     const ctx = this.refs.chart.getContext('2d');
     const x = this.props.xData

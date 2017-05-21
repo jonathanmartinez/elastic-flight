@@ -83,6 +83,9 @@ footer a{
 .bottom-0{
   margin-bottom: 0px;
 }
+.top-0{
+  margin-top: 0px;
+}
 
 nav.my-nav{
   background-color: white;
@@ -99,13 +102,11 @@ nav.my-nav{
 }
 
 /*TODO: refact*/
-.results-info .col-xs-10{
+.results-info .col-xs-2, .results-info .col-xs-10{
+  padding-right: 0px;
   padding-left: 0px;
 }
 
-.results-info .col-xs-2{
-  padding-right: 0px;
-}
 
 .loader, .loader:after {
   border-radius: 50%;
@@ -182,6 +183,10 @@ footer{
 }
 .left-10{
   margin-left: 10px;
+}
+
+.right-10{
+  margin-right: 10px;
 }
 
 .error{

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import FlightsTable from './FlightsTable.js';
 import FlightsChart from './FlightsChart.js';
 import { Link } from 'react-router-dom';
-import EFForm from './EFForm.js';
+import Error from './Error.js';
+import Loading from './Loading.js';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import 'font-awesome/css/font-awesome.css';
 
 export default class Results extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       flights: [],
       originPlace: {},
@@ -16,14 +18,14 @@ export default class Results extends Component {
       copied: false,
       error: false,
     };
+
     this.handleErrors = this.handleErrors.bind(this);
   }
 
   componentDidMount(){
     this.fetchFlights();
-    //TODO: refact
-    this.fetchOriginPlace(this.props.match.params.originPlaceId);
-    this.fetchDestinationPlace(this.props.match.params.destinationPlaceId);
+    this.fetchPlace(this.props.match.params.originPlaceId, 'originPlace');
+    this.fetchPlace(this.props.match.params.destinationPlaceId, 'destinationPlace');
   }
 
   fetchFlights(){
@@ -61,54 +63,26 @@ export default class Results extends Component {
       return response;
     }
 
-    //TODO: Refact
-    fetchOriginPlace(PlaceId){
+    fetchPlace(PlaceId, placeKey){
           fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/en-EN?id=${PlaceId}&apikey=jo976848726052725135841379967755`)
               .then(this.handleErrors)
               .then((response) => response.json())
               .then((json) => {
                 this.setState({
-                   originPlace : json.Places[0],
+                   [placeKey] : json.Places[0],
                 });
               }).catch((error) => {
                   this.setState({'error' : true});
               });
       }
-    fetchDestinationPlace(PlaceId){
-            fetch(`https://cors-anywhere.herokuapp.com/http://partners.api.skyscanner.net/apiservices/autosuggest/v1.0/ES/eur/en-EN?id=${PlaceId}&apikey=jo976848726052725135841379967755`)
-              .then(this.handleErrors)
-              .then((response) => response.json())
-              .then((json) => {
-                  this.setState({
-                     destinationPlace : json.Places[0],
-                  });
-              }).catch((error) => {
-                  this.setState({'error' : true});
-              });
-        }
 
   render() {
     if(this.state.error){
-      return (
-          <div className="container container-loading">
-            <div className="row">
-              <div className="col-xs-12 text-center error">
-                <i className="fa fa-frown-o"></i>
-                <p className="lead">Sorry, we do not find any flight for your filters, choose another filters.</p>
-                <div className="row">
-                  <div className="col-md-4 col-md-offset-4">
-                    <Link to="/"><button type="button" className="btn btn-default btn-ef btn-block rounded">Change filters</button></Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-      );
+      return (<Error />);
     }
-    //TODO
-    else if (this.state.flights.length > 0 && this.state.originPlace.PlaceId && this.state.destinationPlace.PlaceId) {
+    else if (this.state.flights.length > 0
+      && this.state.originPlace.PlaceId
+      && this.state.destinationPlace.PlaceId) {
         const xData =  this.state.flights.map( f => f.DateStringFormat.slice(0, f.DateStringFormat.length - 4) );//remove the year
         const yData =  this.state.flights.map( f => f.MinPrice );
 
@@ -116,7 +90,7 @@ export default class Results extends Component {
           <div className="container results">
 
             <div className="row results-info">
-              <div className="col-xs-10">
+              <div className="col-xs-10 text-left">
                 <Link to="/"><i className="fa fa-angle-left"></i> Change filters</Link>
               </div>
               <div className="col-xs-2 text-right">
@@ -171,17 +145,7 @@ export default class Results extends Component {
       );
       }
       else{
-        return (
-            <div className="container container-loading">
-              <div className="row">
-                <div className="col-xs-12">
-                  <div className="loader"></div>
-                </div>
-              </div>
-
-            </div>
-
-        );
+        return (<Loading />);
       }
   }
 }
