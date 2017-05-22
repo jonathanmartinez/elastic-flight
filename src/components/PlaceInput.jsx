@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
+//Input component that loads places remotely through the Skyscanner API
 export default class PlaceInput extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,7 @@ export default class PlaceInput extends React.Component {
     .then((response) => response.json())
     .then((json) => {
       json.Places.forEach(function (place, i) {
-          place.PlaceName += ` — ${place.CountryName}  (${place.PlaceId.replace('-sky', '')})`;
+        place.PlaceName += ` — ${place.CountryName}  (${place.PlaceId.replace('-sky', '')})`;
       });
 
       return { options: json.Places };
@@ -47,7 +48,14 @@ export default class PlaceInput extends React.Component {
     const place = this.props.place;
 
     return(
-      <AsyncComponent value={place} onChange={this.onChange} valueKey="PlaceId" labelKey="PlaceName" loadOptions={this.getPlaces} autofocus={this.props.autofocus} />
+      <AsyncComponent
+        value={place}
+        onChange={this.onChange}
+        valueKey="PlaceId"
+        labelKey="PlaceName"
+        loadOptions={this.getPlaces}
+        autofocus={this.props.autofocus}
+      />
     )
   }
 }

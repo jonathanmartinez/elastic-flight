@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js';
 
-
+//Component to render flights in chart format
 export default class FlightsChart extends Component {
   componentDidMount() {
     const ctx = this.refs.chart.getContext('2d');
@@ -35,11 +35,11 @@ export default class FlightsChart extends Component {
       },
     };
     /* eslint new-cap: ["error", {"capIsNewExceptions": ["Line"]}] */
-    const myLineChart = new Chart(ctx).Line(data, options);
+    new Chart(ctx).Line(data, options);
   }
+
   render() {
-    return (
-      <canvas className="chart" ref="chart" width="1024" height="400" />
-    );
+    return (<canvas className="chart" ref="chart" width="1024" height="400" />);
   }
+
 }
