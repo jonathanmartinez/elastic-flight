@@ -84,7 +84,8 @@ export default class EFForm extends React.Component {
             onPlaceChange={this.handleSelectChange('originPlace')}
             className="form-control"
           />
-          { {/* Form validation message */}
+          {/* Form validation message */}
+          {
             !this.state.originPlace.PlaceId && this.state.formValidationStarted ?
             <span className="helpBlock text-danger"><i className="fa fa-times"></i> Origin is required</span>
             :
@@ -98,7 +99,8 @@ export default class EFForm extends React.Component {
             onPlaceChange={this.handleSelectChange('destinationPlace')}
             className="form-control"
           />
-          { {/* Form validation message */}
+          {/* Form validation message */}
+          {
             !this.state.destinationPlace.PlaceId && this.state.formValidationStarted ?
             <span className="helpBlock text-danger"><i className="fa fa-times"></i> Destination is required</span>
             :
