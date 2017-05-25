@@ -1,4 +1,6 @@
 <div align="center">
+  <img src="https://github.com/jonathanmartinez/elastic-flight/blob/master/doc/isotipo.jpg?raw=true" height="100" alt="Logo">
+    <br><br>
     <p><strong>Elastic Flight</strong> — Find cheap flights with no particular date.</p>
     <a href="http://www.elasticflight.com">elasticflight.com</a>
     <br><br>
