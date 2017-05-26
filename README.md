@@ -16,6 +16,7 @@ Elastic Flight is a flight search tool to analyze the price of flights within a 
 * [ReactJS](https://facebook.github.io/react/) & [React Router](https://reacttraining.com/react-router/)
 * [ES6 Syntax](http://es6-features.org) (classes, promises, arrow functions, closures, let/const, string interpolation, etc...)
 * [Twitter Bootstrap](http://getbootstrap.com/)
+* [SASS](http://sass-lang.com/)
 * [ChartJS](http://www.chartjs.org/)
 * [Webpack](https://webpack.github.io/)
 * [Babel](https://babeljs.io/)

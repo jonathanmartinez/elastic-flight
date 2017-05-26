@@ -1,18 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,700');
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat';
-  background-color: #F1F5F8;
+$lightGrey: #F1F5F8;
+$elasticBlue: #41cfd4;
+$elasticPurple: #927df3;
+
+@mixin media($queryString){
+  @media #{$queryString} {
+    @content;
+  }
 }
 
-.bg-white{
-  background-color: white;
+.results-intro{
+  font-size: 18px;
+  @include media("(min-width: 768px)"){
+    font-size: 24px;
+  }
 }
 
-.rounded{
-  border-radius: 20px;
+.note{
+  margin-bottom: 20px;
+  @include media("(min-width: 768px)"){
+    margin-bottom: 40px;
+    margin-top: -20px;
+  }
+}
+
+.intro{
+  margin-top:40px;
+  margin-bottom: 30px;
+  @include media("(min-width: 768px)"){
+    margin-top:120px;
+  }
 }
 
 .full-height{
@@ -24,6 +42,52 @@ body {
   background-size: cover;
   margin-bottom: -60px;
   width: 100%;
+  @include media("(min-width: 768px)"){
+    min-height: 0px;
+  }
+}
+
+.divLogo{
+  text-align: center;
+  @include media("(min-width: 768px)"){
+      text-align: left;
+  }
+}
+
+.results{
+  padding-left: 30px;
+  padding-right: 30px;
+  section{
+    padding: 20px 10px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ededed;
+
+  }
+  @include media("(min-width: 768px)"){
+    padding-left: 15px;
+    padding-right: 15px;
+    section{
+      padding: 40px 40px;
+      margin-bottom: 60px;
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  background-color: $lightGrey;
+}
+
+.bg-white{
+  background-color: white;
+}
+
+.rounded{
+  border-radius: 20px;
 }
 
 .well-ef{
@@ -57,13 +121,13 @@ body {
 }
 
 .btn-ef, .btn-ef:active{
-  background: rgba(146,125,243,1);
-  background: -moz-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(146,125,243,1)), color-stop(100%, rgba(65,207,212,1)));
-  background: -webkit-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -o-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -ms-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: linear-gradient(to right, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: $elasticPurple;
+  background: -moz-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, $elasticPurple), color-stop(100%, $elasticBlue));
+  background: -webkit-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -o-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -ms-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: linear-gradient(to right, $elasticPurple 0%, $elasticBlue 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#927df3', endColorstr='#41cfd4', GradientType=1 );
 }
 
@@ -77,7 +141,7 @@ footer a{
 
 .scroll-to-view{
   font-size: 24px;
-  color:#41cfd4;
+  color: $elasticBlue;
 }
 
 .bottom-0{
@@ -92,17 +156,17 @@ nav.my-nav{
   background-color: white;
   height: 60px;
   border-bottom: 1px solid #ededed;
-  color: rgba(146,125,243,1);
+  color: $elasticPurple;
   box-shadow: 0 0 5px rgba(57,70,78,.2);
   padding: 0px 30px;
 }
 
+/*TODO: refact*/
 .results-info{
   padding-top: 20px;
   padding-bottom: 10px;
 }
 
-/*TODO: refact*/
 .results-info .col-xs-2, .results-info .col-xs-10{
   padding-right: 0px;
   padding-left: 0px;
@@ -160,13 +224,13 @@ footer{
   background-color: #444;
   color: white;
   padding: 20px 20px;
-  background: rgba(146,125,243,1);
-  background: -moz-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(146,125,243,1)), color-stop(100%, rgba(65,207,212,1)));
-  background: -webkit-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -o-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: -ms-linear-gradient(left, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
-  background: linear-gradient(to right, rgba(146,125,243,1) 0%, rgba(65,207,212,1) 100%);
+  background: $elasticPurple;
+  background: -moz-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, $elasticPurple), color-stop(100%, $elasticBlue));
+  background: -webkit-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -o-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: -ms-linear-gradient(left, $elasticPurple 0%, $elasticBlue 100%);
+  background: linear-gradient(to right, $elasticPurple 0%, $elasticBlue 100%);
 }
 
 .logoSkyscanner{
@@ -192,11 +256,10 @@ footer{
 
 .error{
   margin-top: 60px;
-}
-
-.error i{
-  font-size: 100px;
-  color: #d0d0d0;
+  i{
+    font-size: 100px;
+    color: #d0d0d0;
+  }
 }
 
 .arrow{
@@ -204,63 +267,6 @@ footer{
   margin-top: 40px;
 }
 
-.intro{
-  margin-top:40px;
-  margin-bottom: 30px;
-}
-
-.divLogo{
-  text-align: center;
-}
-
-.results{
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
 .book-now-cheapest{
   margin-bottom:10px;
-}
-
-.results section{
-  padding: 20px 10px;
-  background-color: white;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  border: 1px solid #ededed;
-
-}
-.results-intro{
-  font-size: 18px;
-}
-
-.note{
-  margin-bottom: 20px;
-}
-
-@media only screen and (min-width : 768px) {
-  .note{
-    margin-bottom: 40px;
-    margin-top: -20px;
-  }
-  .intro{
-    margin-top:120px;
-  }
-  .full-height{
-    min-height: 0px;
-  }
-  .divLogo{
-    text-align: left;
-  }
-  .results{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .results section{
-    padding: 40px 40px;
-    margin-bottom: 60px;
-  }
-  .results-intro{
-    font-size: 24px;
-  }
 }
