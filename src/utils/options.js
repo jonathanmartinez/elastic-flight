@@ -1,5 +1,5 @@
 exports.MONTHS = [
-  {value:'01', label: 'Janaury'},
+  {value:'01', label: 'January'},
   {value:'02', label: 'February'},
   {value:'03', label: 'March'},
   {value:'04', label: 'April'},
