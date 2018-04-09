@@ -103,6 +103,7 @@ export default class Results extends Component {
 
             <section className="row">
               <div className="col-xs-12 text-center">
+                <h2 className="top-0"><b>{this.state.originPlace.PlaceName} <i className="fa fa-long-arrow-right arrow top-0"></i> {this.state.destinationPlace.PlaceName}</b></h2>
                 <h3 className="results-intro">The cheapest flight from {this.state.originPlace.PlaceName} to {this.state.destinationPlace.PlaceName} for {this.props.match.params.passengers} passenger(s) is on {this.state.cheapestFlight.DateStringFormat} for <br/><b>{this.state.cheapestFlight.MinPriceFormat}</b></h3>
                 <br/>
                 <div className="row">

@@ -43,7 +43,7 @@ export default class EFForm extends React.Component {
 
   handleSelectChange(name) {
     return function(newValue) {
-        this.setState({[name]: newValue});
+        this.setState({[name]: newValue || {PlaceId: "", PlaceName: "Country, city or airport..."}});
     }.bind(this);
   }
 
