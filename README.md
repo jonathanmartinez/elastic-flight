@@ -28,3 +28,4 @@ Elastic Flight is a flight search tool to analyze the price of flights within a 
 # Improvements
 
 * Unit testing
+ 
